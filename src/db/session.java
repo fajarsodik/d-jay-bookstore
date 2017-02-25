@@ -7,10 +7,9 @@ package db;
 
 /**
  *
- * @author Mochamad Fajar Sodik
+ * @author CLIENT 6
  */
 public class session {
-    
     private static int iduser;
     private static String akses;
 

@@ -11,15 +11,15 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Mochamad Fajar Sodik
+ * @author CLIENT 6
  */
 public class koneksi {
     private static Connection koneksi;
     
-    public static Connection getKoneksi() {
+    public static Connection getkoneksi() {
         if (koneksi == null) {
             try {
-                String url = "jdbc:mysql://localhost/ukom_toko";
+                String url = "jdbc:mysql://localhost/toko-djay";
                 String user = "root";
                 String pass = "";
                 
@@ -27,9 +27,10 @@ public class koneksi {
                 
                 koneksi = (Connection) DriverManager.getConnection(url, user, pass);
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null,"Eror" + e.getMessage());
+                JOptionPane.showMessageDialog(null, "EROR" + e.getMessage());
             }
         }
+        
         return koneksi;
     }
 }

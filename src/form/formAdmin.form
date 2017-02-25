@@ -7,7 +7,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\user.png"/>
+              <Image iconType="3" name="/gambar/user.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Admin"/>
           </Properties>
@@ -15,7 +15,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\logout.png"/>
+                  <Image iconType="3" name="/gambar/logout.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Logout"/>
               </Properties>
@@ -26,7 +26,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\exit-2.png"/>
+                  <Image iconType="3" name="/gambar/exit-2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Keluar"/>
               </Properties>
@@ -39,7 +39,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\list.png"/>
+              <Image iconType="3" name="/gambar/list.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Master Data"/>
           </Properties>
@@ -47,7 +47,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\barang.png"/>
+                  <Image iconType="3" name="/gambar/barang.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Data Buku"/>
               </Properties>
@@ -58,7 +58,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\supplier.png"/>
+                  <Image iconType="3" name="/gambar/supplier.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Data Distributor"/>
               </Properties>
@@ -69,9 +69,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Mochamad Fajar Sodik\Documents\Folder Ukom\XII RPL 1\Desktop\22. Mochamad Fajar Sodik\bahan gambar dan lagu dan library\pasok.png"/>
+                  <Image iconType="3" name="/gambar/download.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Data Buku Masuk"/>
+                <Property name="text" type="java.lang.String" value="Data Pasok Barang"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
@@ -82,7 +82,7 @@
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\report.png"/>
+              <Image iconType="3" name="/gambar/report.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Laporan"/>
           </Properties>
@@ -90,9 +90,9 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Mochamad Fajar Sodik\Documents\Folder Ukom\XII RPL 1\Desktop\22. Mochamad Fajar Sodik\bahan gambar dan lagu dan library\report-2.png"/>
+                  <Image iconType="3" name="/gambar/report-2.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Laporan Penjualan"/>
+                <Property name="text" type="java.lang.String" value="Laporan Buku"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
@@ -101,23 +101,34 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Mochamad Fajar Sodik\Documents\Folder Ukom\XII RPL 1\Desktop\22. Mochamad Fajar Sodik\bahan gambar dan lagu dan library\laporanbarangmasuk.png"/>
+                  <Image iconType="3" name="/gambar/flag.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Laporan Barang Masuk"/>
+                <Property name="text" type="java.lang.String" value="Laporan Penjualan"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem7ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Mochamad Fajar Sodik\Documents\Folder Ukom\XII RPL 1\Desktop\22. Mochamad Fajar Sodik\bahan gambar dan lagu dan library\laporanbarang.png"/>
+                  <Image iconType="3" name="/gambar/online-shop.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Laporan Barang"/>
+                <Property name="text" type="java.lang.String" value="Laporan Pasok Barang"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem10ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem8ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/gambar/delivery-truck.png"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Laporan Distributor"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem9ActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -125,20 +136,26 @@
         <Menu class="javax.swing.JMenu" name="jMenu4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\bahan ukom\bahan gambar dan lagu dan library\info.png"/>
+              <Image iconType="3" name="/gambar/info.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Info"/>
+            <Property name="text" type="java.lang.String" value="Info Aplikasi"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Versi Aplikasi"/>
+                <Property name="text" type="java.lang.String" value="Info"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem10ActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem11">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Bantuan"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem11ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -147,6 +164,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="D - Jay Book Store"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -184,12 +202,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1080" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1066" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="498" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="698" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

@@ -5,14 +5,16 @@
  */
 package form;
 
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Mochamad Fajar Sodik
+ * @author CLIENT 6
  */
 public class formKasir extends javax.swing.JFrame {
 
-    private formBarang barang;
     private formDistributor distributor;
+    private formBarang barang;
     private formTransaksi transaksi;
     
     /**
@@ -25,8 +27,8 @@ public class formKasir extends javax.swing.JFrame {
     }
     
     private void initForm() {
-        barang = new formBarang();
         distributor = new formDistributor();
+        barang = new formBarang();
         transaksi = new formTransaksi();
     }
 
@@ -45,14 +47,15 @@ public class formKasir extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("D - Jay Book Store");
         setResizable(false);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
@@ -66,10 +69,10 @@ public class formKasir extends javax.swing.JFrame {
             .addGap(0, 698, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\user.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/user.png"))); // NOI18N
         jMenu1.setText("Kasir");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\logout.png")); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/logout.png"))); // NOI18N
         jMenuItem1.setText("Logout");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +81,7 @@ public class formKasir extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\exit-2.png")); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/exit-2.png"))); // NOI18N
         jMenuItem2.setText("Keluar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,29 +92,11 @@ public class formKasir extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\list.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/list.png"))); // NOI18N
         jMenu2.setText("Master Data");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\barang.png")); // NOI18N
-        jMenuItem3.setText("Data Barang");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\supplier.png")); // NOI18N
-        jMenuItem4.setText("Data Distributor");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\transaksi.png")); // NOI18N
-        jMenuItem5.setText("Transaksi");
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/barang.png"))); // NOI18N
+        jMenuItem5.setText("Data Buku");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -119,16 +104,44 @@ public class formKasir extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem5);
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/supplier.png"))); // NOI18N
+        jMenuItem6.setText("Data Distributor");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/transaksi.png"))); // NOI18N
+        jMenuItem7.setText("Transaksi");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem7);
+
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\info.png")); // NOI18N
-        jMenu3.setText("Info");
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/info.png"))); // NOI18N
+        jMenu3.setText("Info Aplikasi");
 
-        jMenuItem6.setText("Versi Aplikasi");
-        jMenu3.add(jMenuItem6);
+        jMenuItem3.setText("Info");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
 
-        jMenuItem7.setText("Bantuan");
-        jMenu3.add(jMenuItem7);
+        jMenuItem4.setText("Bantuan");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
 
@@ -150,33 +163,41 @@ public class formKasir extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         this.dispose();
-        new formLogin().setVisible(true);
+        new formLogin().show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         if (!barang.isVisible()) {
+            barang.show();
             desktopPane.add(barang);
-            barang.show(true);
         }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        if (!distributor.isVisible()) {
+            distributor.show();
+            desktopPane.add(distributor);
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        if (!transaksi.isVisible()) {
+            transaksi.show();
+            desktopPane.add(transaksi);
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        JOptionPane.showMessageDialog(this, "D-Jay Store V. 1.0");
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        if (!distributor.isVisible()) {
-            desktopPane.add(distributor);
-            distributor.show(true);
-        }
+        JOptionPane.showMessageDialog(this, "More Info : https://fajarsodik.github.io");
     }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        if (!transaksi.isVisible()) {
-            desktopPane.add(transaksi);
-            transaksi.show(true);
-        }
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments

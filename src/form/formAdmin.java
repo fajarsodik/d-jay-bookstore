@@ -5,17 +5,19 @@
  */
 package form;
 
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Mochamad Fajar Sodik
+ * @author CLIENT 6
  */
 public class formAdmin extends javax.swing.JFrame {
 
-    
-    private formBarang barang;
     private formDistributor distributor;
-    private formPasok pasok;
-    private formLapBarang lapBarang;
+    private formBarang barang;
+    private formPasokBarang pasokBarang;
+    private formLapBuku lapBuku;
+    private formLapDistributor lapDistributor;
     private formLapPasok lapPasok;
     private formLapPenjualan lapPenjualan;
     /**
@@ -28,10 +30,11 @@ public class formAdmin extends javax.swing.JFrame {
     }
     
     private void initForm() {
-        barang = new formBarang();
         distributor = new formDistributor();
-        pasok = new formPasok();
-        lapBarang = new formLapBarang();
+        barang = new formBarang();
+        pasokBarang = new formPasokBarang();
+        lapBuku = new formLapBuku();
+        lapDistributor = new formLapDistributor();
         lapPasok = new formLapPasok();
         lapPenjualan = new formLapPenjualan();
     }
@@ -57,29 +60,31 @@ public class formAdmin extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("D - Jay Book Store");
         setResizable(false);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGap(0, 1066, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 698, Short.MAX_VALUE)
         );
 
-        jMenu1.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\user.png")); // NOI18N
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/user.png"))); // NOI18N
         jMenu1.setText("Admin");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\logout.png")); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/logout.png"))); // NOI18N
         jMenuItem1.setText("Logout");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +93,7 @@ public class formAdmin extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\exit-2.png")); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/exit-2.png"))); // NOI18N
         jMenuItem2.setText("Keluar");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,10 +104,10 @@ public class formAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\list.png")); // NOI18N
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/list.png"))); // NOI18N
         jMenu2.setText("Master Data");
 
-        jMenuItem3.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\barang.png")); // NOI18N
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/barang.png"))); // NOI18N
         jMenuItem3.setText("Data Buku");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +116,7 @@ public class formAdmin extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem3);
 
-        jMenuItem4.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\supplier.png")); // NOI18N
+        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/supplier.png"))); // NOI18N
         jMenuItem4.setText("Data Distributor");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,8 +125,8 @@ public class formAdmin extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem4);
 
-        jMenuItem5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\pasok.png")); // NOI18N
-        jMenuItem5.setText("Data Buku Masuk");
+        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/download.png"))); // NOI18N
+        jMenuItem5.setText("Data Pasok Barang");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -131,11 +136,11 @@ public class formAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\report.png")); // NOI18N
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/report.png"))); // NOI18N
         jMenu3.setText("Laporan");
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\report-2.png")); // NOI18N
-        jMenuItem6.setText("Laporan Penjualan");
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/report-2.png"))); // NOI18N
+        jMenuItem6.setText("Laporan Buku");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -143,8 +148,8 @@ public class formAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem6);
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\laporanbarangmasuk.png")); // NOI18N
-        jMenuItem7.setText("Laporan Barang Masuk");
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/flag.png"))); // NOI18N
+        jMenuItem7.setText("Laporan Penjualan");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
@@ -152,25 +157,44 @@ public class formAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon("C:\\Users\\Mochamad Fajar Sodik\\Documents\\Folder Ukom\\XII RPL 1\\Desktop\\22. Mochamad Fajar Sodik\\bahan gambar dan lagu dan library\\laporanbarang.png")); // NOI18N
-        jMenuItem10.setText("Laporan Barang");
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/online-shop.png"))); // NOI18N
+        jMenuItem8.setText("Laporan Pasok Barang");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/delivery-truck.png"))); // NOI18N
+        jMenuItem9.setText("Laporan Distributor");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu3);
+
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gambar/info.png"))); // NOI18N
+        jMenu4.setText("Info Aplikasi");
+
+        jMenuItem10.setText("Info");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem10ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem10);
+        jMenu4.add(jMenuItem10);
 
-        jMenuBar1.add(jMenu3);
-
-        jMenu4.setIcon(new javax.swing.ImageIcon("D:\\bahan ukom\\bahan gambar dan lagu dan library\\info.png")); // NOI18N
-        jMenu4.setText("Info");
-
-        jMenuItem8.setText("Versi Aplikasi");
-        jMenu4.add(jMenuItem8);
-
-        jMenuItem9.setText("Bantuan");
-        jMenu4.add(jMenuItem9);
+        jMenuItem11.setText("Bantuan");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem11);
 
         jMenuBar1.add(jMenu4);
 
@@ -190,56 +214,71 @@ public class formAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.dispose();
+        new formLogin().show(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        this.dispose();
-        new formLogin().show();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        if (!barang.isVisible()) {
-            desktopPane.add(barang);
-            barang.show(true);
-        }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         if (!distributor.isVisible()) {
+            distributor.show();
             desktopPane.add(distributor);
-            distributor.show(true);
         }
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (!barang.isVisible()) {
+            barang.show();
+            desktopPane.add(barang);
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        if (!pasok.isVisible()) {
-            desktopPane.add(pasok);
-            pasok.show(true);
+        if (!pasokBarang.isVisible()) {
+            pasokBarang.show();
+            desktopPane.add(pasokBarang);
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        if (!lapDistributor.isVisible()) {
+            lapDistributor.show();
+            desktopPane.add(lapDistributor);
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        JOptionPane.showMessageDialog(this, "D-Jay Store V. 1.0");
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        JOptionPane.showMessageDialog(this, "More Info : https://fajarsodik.github.io");
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        if (!lapPasok.isVisible()) {
+            lapPasok.show();
+            desktopPane.add(lapPasok);
+        }
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        if (!lapPenjualan.isVisible()) {
-            desktopPane.add(lapPenjualan);
-            lapPenjualan.show(true);
+        if (!lapBuku.isVisible()) {
+            lapBuku.show();
+            desktopPane.add(lapBuku);
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        if (!lapPasok.isVisible()) {
-            desktopPane.add(lapPasok);
-            lapPasok.show();
+        if (!lapPenjualan.isVisible()) {
+            lapPenjualan.show();
+            desktopPane.add(lapPenjualan);
         }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        if (!lapBarang.isVisible()) {
-            desktopPane.add(lapBarang);
-            lapBarang.show(true);
-        }
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,6 +324,7 @@ public class formAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

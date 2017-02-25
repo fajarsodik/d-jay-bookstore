@@ -17,208 +17,189 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Mochamad Fajar Sodik
+ * @author CLIENT 6
  */
 public class formDistributor extends javax.swing.JInternalFrame {
 
-    String aksesUser = session.getAkses() ;
+    String hakakses = session.getAkses();
     /**
      * Creates new form formDistributor
      */
     public formDistributor() {
         initComponents();
-        hakAkses(true);
         fillDataToTable();
-    }
-    
-    private void cari(String cariData) {
-        if (cmbCari.getSelectedItem().equals("Kode Distributor")) {
-            String query = "SELECT * FROM distributor WHERE id_distributor = ?";
-            PreparedStatement statement;
-            Connection connection;
-            try {
-                connection = koneksi.getKoneksi();
-                statement = (PreparedStatement) connection.prepareStatement(query);
-                statement.setString(1, cariData);
-                ResultSet hasil = statement.executeQuery();
-                if (hasil.next()) {
-                    txtKode.setText(hasil.getString("id_distributor"));
-                    txtNama.setText(hasil.getString("nama_distributor"));
-                    txtAlamat.setText(hasil.getString("alamat"));
-                    txtTelepon.setText(hasil.getString("telepon"));
-                    if (aksesUser.equals("Full")) {
-                        hakAkses(false);
-                    }
-                    else if(aksesUser.equals("Kasir")) {
-                        hakAkses(true);
-                    }
-                }
-                else {
-                    JOptionPane.showMessageDialog(this, "Data Tidak Ditemukan");
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-        }
-        else if(cmbCari.getSelectedItem().equals("Nama Distributor")) {
-            String query = "SELECT * FROM distributor WHERE nama_distributor LIKE ?";
-            PreparedStatement statement;
-            Connection connection;
-            try {
-                connection = koneksi.getKoneksi();
-                statement = (PreparedStatement) connection.prepareStatement(query);
-                statement.setString(1, cariData);
-                ResultSet hasil = statement.executeQuery();
-                if (hasil.next()) {
-                    txtKode.setText(hasil.getString("id_distributor"));
-                    txtNama.setText(hasil.getString("nama_distributor"));
-                    txtAlamat.setText(hasil.getString("alamat"));
-                    txtTelepon.setText(hasil.getString("telepon"));
-                    if (aksesUser.equals("Full")) {
-                        hakAkses(false);
-                    }
-                    else if(aksesUser.equals("Kasir")) {
-                        hakAkses(true);
-                    }
-                }
-                else {
-                    JOptionPane.showMessageDialog(this, "Data Tidak Ditemukan");
-                }
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage());
-            }
-        }
-    }
-    
-    private void tambah() {
-        txtCari.setText("");
-        txtKode.setText("");
-        txtNama.setText("");
-        txtAlamat.setText("");
-        txtTelepon.setText("");
         hakAkses(true);
     }
     
     private void hakAkses(boolean akses) {
-        if (aksesUser.equals("Full")) {
-          btnSimpan.setEnabled(akses);
-          btnHapus.setEnabled(!akses);
-          btnUbah.setEnabled(!akses);
+        if (hakakses.equals("Admin")) {
+            btnSimpan.setEnabled(akses);
+            btnUbah.setEnabled(!akses);
+            btnHapus.setEnabled(!akses);
         }
-        else if(aksesUser.equals("Kasir")) {
-          btnSimpan.setEnabled(!akses);
-          btnHapus.setEnabled(!akses);
-          btnUbah.setEnabled(!akses);
-          btnTambah.setEnabled(!akses);  
+        else if(hakakses.equals("Kasir")) {
+            btnTambah.setEnabled(akses);
+            btnSimpan.setEnabled(!akses);
+            btnUbah.setEnabled(!akses);
+            btnHapus.setEnabled(!akses);
         }
     }
-    
+
     private void fillDataToTable() {
         DefaultTableModel tableModel;
         tableModel = (DefaultTableModel) tableData.getModel();
         String query = "SELECT * FROM distributor";
-        Connection connection;
         Statement statement;
+        Connection connection;
         try {
-            connection = koneksi.getKoneksi();
+            connection = koneksi.getkoneksi();
             statement = (Statement) connection.createStatement();
             ResultSet hasil = statement.executeQuery(query);
-            while (hasil.next()) {                
-                String kode = hasil.getString("id_distributor");
-                String nama = hasil.getString("nama_distributor");
-                String alamat = hasil.getString("alamat");
-                String telepon = hasil.getString("telepon");
-                Object[] data = new Object[] {kode, nama, alamat, telepon};
+            while (hasil.next()) {
+                String tb_kode = hasil.getString("id_distributor");
+                String tb_nama = hasil.getString("nama_distributor");
+                String tb_alamat = hasil.getString("alamat");
+                String tb_telepon = hasil.getString("telepon");
+                Object[] data = new Object[] {tb_kode, tb_nama, tb_alamat, tb_telepon};
                 tableModel.addRow(data);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "EROR"  + e.getMessage());
         }
     }
+
+    private void cari(String cariData) {
+        if (cmbUrut.getSelectedItem().equals("Kode Distributor")) {
+            String query = "SELECT * FROM distributor WHERE id_distributor = ?";
+            Connection connection;
+            PreparedStatement statement;
+            try {
+                connection = koneksi.getkoneksi();
+                statement = (PreparedStatement) connection.prepareStatement(query);
+                statement.setString(1, cariData);
+                ResultSet hasil = statement.executeQuery();
+                if (hasil.next()) {
+                    txtKode.setText(hasil.getString("id_distributor"));
+                    txtNama.setText(hasil.getString("nama_distributor"));
+                    txtAlamat.setText(hasil.getString("alamat"));;
+                    txtTelepon.setText(hasil.getString("telepon"));
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Data tak ada");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "EROR JUL" + e.getMessage());
+            }
+        }
+        else if(cmbUrut.getSelectedItem().equals("Nama Distributor")) {
+            String query = "SELECT * FROM distributor WHERE nama_distributor LIKE ?";
+            Connection connection;
+            PreparedStatement statement;
+            try {
+                connection = koneksi.getkoneksi();
+                statement = (PreparedStatement) connection.prepareStatement(query);
+                statement.setString(1, cariData);
+                ResultSet hasil = statement.executeQuery();
+                if (hasil.next()) {
+                    txtKode.setText(hasil.getString("id_distributor"));
+                    txtNama.setText(hasil.getString("nama_distributor"));
+                    txtAlamat.setText(hasil.getString("alamat"));;
+                    txtTelepon.setText(hasil.getString("telepon"));
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Data tak ada");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "EROR JUL" + e.getMessage());
+            }
+        }
+    }
+
+    private void tambah() {
+        txtKode.setText("");
+        txtAlamat.setText("");
+        txtCari.setText("");
+        txtTelepon.setText("");
+        txtNama.setText("");
+   }
     
-    private void simpan() {
-        String query = "INSERT INTO distributor (nama_distributor, alamat, telepon)"
+    private void simpan (String nama, String alamat, String telepon) {
+        String query = "INSERT INTO distributor (nama_distributor, alamat, telepon) "
                 + " VALUES (?, ?, ?)";
         PreparedStatement statement;
         Connection connection;
         try {
-            connection = koneksi.getKoneksi();
+            connection = koneksi.getkoneksi();
             statement = (PreparedStatement) connection.prepareStatement(query);
-            statement.setString(1, txtNama.getText());
-            statement.setString(2, txtAlamat.getText());
-            statement.setString(3, txtTelepon.getText());
+            statement.setString(1, nama);
+            statement.setString(2, alamat);
+            statement.setString(3, telepon);
             int hasil = statement.executeUpdate();
             if (hasil == 1) {
-                JOptionPane.showMessageDialog(this, "Data Telah Disimpan");
-                refreshDataTable();
+                JOptionPane.showMessageDialog(this, "Data Berhasil disimpan");
                 tambah();
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Maaf Anda Kuyu :v");
+                refreshDataTable();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,"EROR DI SINI : " + e.getMessage());
         }
     }
     
     private void refreshDataTable() {
         DefaultTableModel tableModel;
         tableModel = (DefaultTableModel) tableData.getModel();
-        int jumlahBaris = tableData.getRowCount();
-        for (int i = 0; i < jumlahBaris; i++) {
+        int isiTabel = tableModel.getRowCount();
+        for (int i = 0; i < isiTabel; i++) {
             tableModel.removeRow(0);
         }
         fillDataToTable();
     }
     
     private void ubah() {
-        String query = "UPDATE distributor SET nama_distributor = ? , "
-                + " alamat = ?,"
-                + "telepon = ?"
+        String query = "UPDATE distributor SET "
+                + " nama_distributor = ?, "
+                + "alamat = ?, "
+                + "telepon = ? "
                 + " WHERE id_distributor = ?";
-        PreparedStatement statement;
         Connection connection;
+        PreparedStatement statement;
         try {
-            connection = koneksi.getKoneksi();
+            connection = koneksi.getkoneksi();
             statement = (PreparedStatement) connection.prepareStatement(query);
             statement.setString(1, txtNama.getText());
             statement.setString(2, txtAlamat.getText());
             statement.setString(3, txtTelepon.getText());
             statement.setString(4, txtKode.getText());
-            
             int hasil = statement.executeUpdate();
             if (hasil == 1) {
-                JOptionPane.showMessageDialog(this, "Data Berhasil Diupdate");
-                refreshDataTable();
+                JOptionPane.showMessageDialog(this, "Data berhasil diupdate");
                 tambah();
+                refreshDataTable();
             }
             else {
-                JOptionPane.showMessageDialog(this, "Maaf Anda Kuyu :v");
+                JOptionPane.showMessageDialog(this, "Ntah apa salahku");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,"FAK" + e.getMessage());
         }
     }
     
     private void hapus() {
         String query = "DELETE FROM distributor WHERE id_distributor = ?";
-        PreparedStatement statement;
         Connection connection;
+        PreparedStatement statement;
         try {
-            connection = koneksi.getKoneksi();
+            connection = koneksi.getkoneksi();
             statement = (PreparedStatement) connection.prepareStatement(query);
             statement.setString(1, txtKode.getText());
             int hasil = statement.executeUpdate();
             if (hasil == 1) {
-                JOptionPane.showMessageDialog(this, "Data berhasil dihapus");
-                refreshDataTable();
+                JOptionPane.showMessageDialog(this, "Data Berhasil dihapus");
                 tambah();
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Maaf Anda Kuyu :v");
+                refreshDataTable();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this,"EROR DI SINI : " + e.getMessage());
         }
     }
 
@@ -233,22 +214,26 @@ public class formDistributor extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tableData = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        cmbCari = new javax.swing.JComboBox();
         txtCari = new javax.swing.JTextField();
+        cmbUrut = new javax.swing.JComboBox();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtKode = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtTelepon = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAlamat = new javax.swing.JTextArea();
-        btnTambah = new javax.swing.JButton();
-        btnSimpan = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        txtTelepon = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
+        btnSimpan = new javax.swing.JButton();
+        btnTambah = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -259,7 +244,7 @@ public class formDistributor extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Kode Distributor", "Nama istributor", "Alamat", "Telepon"
+                "Kode Distributor", "Nama Distributor", "Alamat", "Telepon"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -283,9 +268,11 @@ public class formDistributor extends javax.swing.JInternalFrame {
             tableData.getColumnModel().getColumn(3).setResizable(false);
         }
 
-        jLabel1.setText("Cari Data");
+        jPanel1.setBackground(new java.awt.Color(255, 102, 102));
 
-        cmbCari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kode Distributor", "Nama Distributor" }));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel1.setText("Cari Data");
 
         txtCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -293,50 +280,101 @@ public class formDistributor extends javax.swing.JInternalFrame {
             }
         });
 
+        cmbUrut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Kode Distributor", "Nama Distributor" }));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cmbUrut, 0, 176, Short.MAX_VALUE)
+                    .addComponent(txtCari, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(cmbUrut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(240, 240, 240));
         jLabel2.setText("Kode Distributor");
 
         txtKode.setEditable(false);
-        txtKode.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtKodeKeyPressed(evt);
-            }
-        });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(240, 240, 240));
         jLabel3.setText("Nama Distributor");
 
-        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNamaKeyPressed(evt);
-            }
-        });
-
-        jLabel4.setText("Telepon");
-
-        txtTelepon.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtTeleponKeyPressed(evt);
-            }
-        });
-
-        jLabel5.setText("Alamat");
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel4.setText("Alamat");
 
         txtAlamat.setColumns(20);
         txtAlamat.setRows(5);
         jScrollPane2.setViewportView(txtAlamat);
 
-        btnTambah.setText("Tambah");
-        btnTambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTambahActionPerformed(evt);
-            }
-        });
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(240, 240, 240));
+        jLabel5.setText("No Telepon");
 
-        btnSimpan.setText("Simpan");
-        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSimpanActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                    .addComponent(txtKode)
+                    .addComponent(txtNama)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtTelepon))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
         btnUbah.setText("Ubah");
         btnUbah.addActionListener(new java.awt.event.ActionListener() {
@@ -352,6 +390,60 @@ public class formDistributor extends javax.swing.JInternalFrame {
             }
         });
 
+        btnSimpan.setText("Simpan");
+        btnSimpan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimpanActionPerformed(evt);
+            }
+        });
+
+        btnTambah.setText("Tambah");
+        btnTambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTambahActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setText("Refresh Data");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRefresh, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnHapus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnSimpan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTambah, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(73, 73, 73))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -359,79 +451,28 @@ public class formDistributor extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(cmbCari, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(165, 165, 165)
-                                        .addComponent(jLabel5)))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTambah, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(cmbCari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtCari, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtKode, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -440,81 +481,59 @@ public class formDistributor extends javax.swing.JInternalFrame {
 
     private void txtCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCariKeyPressed
         String cariData = txtCari.getText();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        if (evt.getKeyChar() == KeyEvent.VK_ENTER) {
             cari(cariData);
+            if (hakakses.equals("Admin")) {
+                hakAkses(false);
+            }
+            else if (hakakses.equals("Kasir")) {
+                hakAkses(true);
+            }
         }
     }//GEN-LAST:event_txtCariKeyPressed
 
-    private void txtKodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKodeKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtKodeKeyPressed
-
-    private void txtNamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNamaKeyPressed
-
-    private void txtTeleponKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeleponKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTeleponKeyPressed
-
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         tambah();
+        if (hakakses.equals("Admin")) {
+            hakAkses(true);
+        }
+        else if(hakakses.equals("Kasir")) {
+            hakAkses(true);
+        }
     }//GEN-LAST:event_btnTambahActionPerformed
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         String nama = txtNama.getText();
         String alamat = txtAlamat.getText();
         String telepon = txtTelepon.getText();
-        if(nama.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
+        
+        if (nama.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Harap Lengkapi data");
         }
-        else if(alamat.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
+        else if(alamat.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Harap Lengkapi data");
         }
-        else if(telepon.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
+        else if(telepon.trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Harap Lengkapi data");
         }
         else {
-            simpan();
+            simpan(nama, alamat, telepon);
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+       refreshDataTable();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
     private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
-        String nama = txtNama.getText();
-        String alamat = txtAlamat.getText();
-        String telepon = txtTelepon.getText();
-        if(nama.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
+        ubah();
+        if (hakakses.equals("Admin")) {
+            hakAkses(true);
         }
-        else if(alamat.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
-        }
-        else if(telepon.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
-        }
-        else {
-            ubah();
+        else if(hakakses.equals("Kasir")) {
+            hakAkses(true);
         }
     }//GEN-LAST:event_btnUbahActionPerformed
-
-    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
-        
-        String nama = txtNama.getText();
-        String alamat = txtAlamat.getText();
-        String telepon = txtTelepon.getText();
-        if(nama.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
-        }
-        else if(alamat.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
-        }
-        else if(telepon.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Harap lengkapi data");
-        }
-        else {
-            hapus();
-        }
-    }//GEN-LAST:event_btnHapusActionPerformed
 
     private void tableDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDataMouseClicked
         try {
@@ -529,10 +548,11 @@ public class formDistributor extends javax.swing.JInternalFrame {
             txtNama.setText(String.valueOf(tb_nama));
             txtAlamat.setText(String.valueOf(tb_alamat));
             txtTelepon.setText(String.valueOf(tb_telepon));
-            if (aksesUser.equals("Full")) {
+            
+            if (hakakses.equals("Admin")) {
                 hakAkses(false);
             }
-            else if (aksesUser.equals("Kasir")) {
+            else if (hakakses.equals("Kasir")) {
                 hakAkses(true);
             }
         } catch (Exception e) {
@@ -540,18 +560,32 @@ public class formDistributor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tableDataMouseClicked
 
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
+        hapus();
+        if (hakakses.equals("Admin")) {
+            hakAkses(true);
+        }
+        else if(hakakses.equals("Kasir")) {
+            hakAkses(true);
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSimpan;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JComboBox cmbCari;
+    private javax.swing.JComboBox cmbUrut;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tableData;
